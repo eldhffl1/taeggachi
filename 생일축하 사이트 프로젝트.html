@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>생일 축하해요!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f8b500, #ff6f61);
+    }
+
+    .container {
+      text-align: center;
+      color: white;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-top: 10px;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 15px 30px;
+      background: #ff4081;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 4s ease-in-out;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+      background: #ff1e6f;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #feedback-section {
+      margin-top: 30px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    #feedback-section textarea {
+      width: 80%;
+      max-width: 400px;
+      height: 100px;
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1rem;
+    }
+
+    #feedback-section button {
+      padding: 10px 20px;
+      margin: 10px;
+      background: #87cefa;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #feedback-section button:hover {
+      background: #4682b4;
+    }
+
+    #heart {
+      font-size: 2rem;
+      color: #ff69b4;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    #heart.active {
+      color: red;
+      transform: scale(1.2);
+    }
+
+    #comment-list {
+      margin-top: 20px;
+      list-style: none;
+      padding: 0;
+      max-width: 400px;
+      margin: 20px auto;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    #comment-list li {
+      margin-bottom: 10px;
+      padding: 10px;
+      background: white;
+      color: black;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>태관아 생일축하해! 🎉</h1>
+    <p>카이스트 입학 ㄱㄱ!</p>
+    <button class="button" id="thank-you-button">감사</button>
+
+    <!-- 숨겨진 피드백 섹션 -->
+    <div id="feedback-section" class="hidden">
+      <textarea id="comment" placeholder="댓글을 입력하세요..."></textarea><br>
+      <button id="submit-comment">댓글 남기기</button>
+      <span id="heart">❤️</span>
+
+      <!-- 댓글 리스트 -->
+      <ul id="comment-list"></ul>
+    </div>
+  </div>
+
+  <script>
+    // "감사합니다" 버튼 클릭 이벤트
+    document.getElementById('thank-you-button').addEventListener('click', function () {
+      alert('행복한 하루 되세요! 🎂');
+      document.getElementById('feedback-section').classList.remove('hidden');
+    });
+
+    // 좋아요 버튼 (하트) 클릭 이벤트
+    const heart = document.getElementById('heart');
+    heart.addEventListener('click', function () {
+      heart.classList.toggle('active');
+    });
+
+    // 댓글 남기기 버튼 클릭 이벤트
+    document.getElementById('submit-comment').addEventListener('click', function () {
+      const comment = document.getElementById('comment').value.trim();
+      if (comment) {
+        // 댓글 리스트에 추가
+        const commentList = document.getElementById('comment-list');
+        const listItem = document.createElement('li');
+        listItem.textContent = comment;
+        commentList.appendChild(listItem);
+
+        // 입력창 초기화
+        document.getElementById('comment').value = '';
+      } else {
+        alert('댓글을 입력해주세요!');
+      }
+    });
+  </script>
+</body>
+</html>
+
+
